@@ -7,7 +7,7 @@ terraform {
   }
   backend "azurerm" { 
     resource_group_name = "tfstate"
-    storage_account_name = "tfstate16098"
+    storage_account_name = "tfstate4cicd"
     container_name = "tfstate"
     key = "gitlab-runner"
   }
@@ -18,17 +18,21 @@ resource "helm_release" "gitlab-runner" {
   repository = "https://charts.gitlab.io/"
   chart      = "gitlab-runner"
   namespace  = var.namespace
-  create_namespace = true
   timeout    = 600
   replace    = true
 
   set {
-    name  = "gitlab.url"
+    name  = "gitlabUrl"
     value = var.gitlab_url
   }
 
   set {
     name  = "runnerRegistrationToken"
     value = var.runner_registration_token
+  }
+
+  set {
+    name = "rbac.create"
+    value = true
   }
 }

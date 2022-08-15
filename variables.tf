@@ -6,7 +6,7 @@ variable "name" {
 variable "namespace" {
     type = string
     description = "K8s namespace for the installation (will be created)"
-    default = "gitlab-runner"
+    default = "gitlab"
 }
 variable "gitlab_url" {
     type = string
