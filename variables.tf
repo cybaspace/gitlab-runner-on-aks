@@ -17,3 +17,15 @@ variable "runner_registration_token" {
     description = "Token to register new runner at server"
     sensitive   = true
 }
+
+variable "runners_image" {
+    type        = string
+    description = "Image to use for the gitlab runner"
+    default     = "docker:20.10.16"
+}
+
+variable "runners_privileged" {
+    type        = bool
+    description = "Run jobs in privileged containers? Needed for Docker in Docker"
+    default     = true
+}

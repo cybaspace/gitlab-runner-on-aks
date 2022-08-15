@@ -32,7 +32,16 @@ resource "helm_release" "gitlab-runner" {
   }
 
   set {
-    name = "rbac.create"
+    name  = "rbac.create"
     value = true
+  }
+
+  set {
+    name  = "runners.image"
+    value = var.runners_image
+  }
+  set {
+    name  = "runners.privileged"
+    value = var.runners_privileged
   }
 }
